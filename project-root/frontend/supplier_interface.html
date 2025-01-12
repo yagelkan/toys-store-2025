@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        button {
+            display: block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>Supplier Interface</h1>
+    <div class="form-group">
+        <label for="product">Product Name:</label>
+        <input type="text" id="product" name="product">
+    </div>
+    <div class="form-group">
+        <label for="stock">Stock Amount:</label>
+        <input type="number" id="stock" name="stock">
+    </div>
+    <button onclick="updateStock()">Update Stock Amounts</button>
+    <div class="form-group">
+        <label for="price">Product Price:</label>
+        <input type="number" id="price" name="price" step="0.01">
+    </div>
+    <button onclick="updatePrices()">Update Product Prices</button>
+    <div id="message" class="message"></div>
+
+    <script>
+        function updateStock() {
+            const product = document.getElementById('product').value;
+            const stock = document.getElementById('stock').value;
+            document.getElementById('message').innerText = `Stock amounts for ${product} updated to ${stock} successfully!`;
+        }
+
+        function updatePrices() {
+            const product = document.getElementById('product').value;
+            const price = document.getElementById('price').value;
+            document.getElementById('message').innerText = `Price for ${product} updated to $${price} successfully!`;
+        }
+    </script>
+</body>
+</html>
