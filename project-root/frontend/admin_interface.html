@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        button {
+            display: block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"], input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Interface</h1>
+    
+    <h2>Add Product</h2>
+    <div class="form-group">
+        <label for="product">Product Name:</label>
+        <input type="text" id="product" name="product">
+    </div>
+    <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount">
+    </div>
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01">
+    </div>
+    <button onclick="addProduct()">Add Product</button>
+    
+    <h2>Upload Files</h2>
+    <div class="form-group">
+        <label for="csvFile">Upload CSV File:</label>
+        <input type="file" id="csvFile" name="csvFile" accept=".csv">
+    </div>
+    <button onclick="uploadCSV()">Upload CSV</button>
+    
+    <div class="form-group">
+        <label for="jsonFile">Upload JSON File:</label>
+        <input type="file" id="jsonFile" name="jsonFile" accept=".json">
+    </div>
+    <button onclick="uploadJSON()">Upload JSON</button>
+    
+    <div id="message" class="message"></div>
+
+    <script>
+        function addProduct() {
+            const product = document.getElementById('product').value;
+            const amount = document.getElementById('amount').value;
+            const price = document.getElementById('price').value;
+            document.getElementById('message').innerText = `Product "${product}" with amount ${amount} and price $${price} added successfully!`;
+        }
+
+        function uploadCSV() {
+            const csvFile = document.getElementById('csvFile').files[0];
+            if (csvFile) {
+                document.getElementById('message').innerText = `CSV file "${csvFile.name}" uploaded successfully!`;
+            } else {
+                document.getElementById('message').innerText = `Please select a CSV file to upload.`;
+            }
+        }
+
+        function uploadJSON() {
+            const jsonFile = document.getElementById('jsonFile').files[0];
+            if (jsonFile) {
+                document.getElementById('message').innerText = `JSON file "${jsonFile.name}" uploaded successfully!`;
+            } else {
+                document.getElementById('message').innerText = `Please select a JSON file to upload.`;
+            }
+        }
+    </script>
+</body>
+</html>
