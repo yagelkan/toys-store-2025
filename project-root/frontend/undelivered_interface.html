@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Prototype</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .status {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Delivery Issues</h1>
+
+        <!-- Report Missing Delivery -->
+        <h2>Report Missing Delivery</h2>
+        <form id="reportForm">
+            <label for="orderId">Order ID:</label>
+            <input type="text" id="orderId" placeholder="Enter your order ID" required>
+
+            <label for="orderDate">Order Date:</label>
+            <input type="date" id="orderDate" required>
+
+            <label for="description">Issue Description:</label>
+            <textarea id="description" rows="4" placeholder="Describe the issue..." required></textarea>
+
+            <button type="submit">Submit Report</button>
+        </form>
+        <p id="reportMessage" class="status"></p>
+
+        <hr>
+
+        <!-- View Report Status -->
+        <h2>View Report Status</h2>
+        <form id="statusForm">
+            <label for="reportId">Report ID:</label>
+            <input type="text" id="reportId" placeholder="Enter your report ID" required>
+
+            <button type="submit">Check Status</button>
+        </form>
+        <p id="statusMessage" class="status"></p>
+    </div>
+
+    <script>
+        // Handle report submission
+        document.getElementById('reportForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const orderId = document.getElementById('orderId').value;
+            document.getElementById('reportMessage').textContent = 
+                `Report submitted successfully for Order ID: ${orderId}. Our team will look into it.\n Your report ID is: 12345. Please use this ID to check the status.`;
+            this.reset();
+        });
+
+        // Handle status check
+        document.getElementById('statusForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const reportId = document.getElementById('reportId').value;
+            // Simulated status
+            const status = reportId === "12345" ? 
+                "Your report is under review. Please check back later." : 
+                "No report found for the given ID.";
+            document.getElementById('statusMessage').textContent = status;
+        });
+    </script>
+</body>
+</html>
